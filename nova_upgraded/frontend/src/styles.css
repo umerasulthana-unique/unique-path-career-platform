@@ -25,7 +25,69 @@ button:active,.linkButton:active{transform:scale(.97)}
 .primary{background:linear-gradient(135deg,var(--pink3),var(--pink),var(--pink2));box-shadow:0 10px 28px var(--pinkGlow)}
 .primary:hover{box-shadow:0 15px 34px rgba(236,72,153,.34);transform:translateY(-2px)}
 .textBtn{color:var(--pink3)}
-nav button:hover,nav button.selected{background:linear-gradient(90deg,rgba(236,72,153,.34),rgba(244,114,182,.10));box-shadow:inset 3px 0 0 var(--pink2)}
+.nav{
+  display:grid;
+  gap:6px;
+  overflow-y:auto;
+  flex:1;
+  scrollbar-width:thin;
+}
+
+.nav button{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 13px;
+  border-radius:11px;
+  background:transparent;
+  color:#9da8bf;
+  text-align:left;
+  font-weight:600;
+  border:0;
+  transition:all .2s ease;
+}
+.nav button:hover{
+  color:#fff;
+  background:linear-gradient(
+    90deg,
+    rgba(236,72,153,.28),
+    rgba(112,76,255,.22),
+    rgba(49,87,255,.18)
+  );
+  transform:translateX(4px);
+  box-shadow:
+    0 0 0 1px rgba(236,72,153,.28),
+    0 6px 20px rgba(236,72,153,.18),
+    inset 0 0 18px rgba(255,255,255,.04);
+  text-shadow:0 0 10px rgba(255,255,255,.35);
+}
+.nav button{
+  position:relative;
+  overflow:hidden;
+}
+
+.nav button::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:70%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.22),
+    transparent
+  );
+  transform:skewX(-20deg);
+  transition:left .45s ease;
+  pointer-events:none;
+}
+
+.nav button:hover::before{
+  left:140%;
+}
 .brandIcon{background:linear-gradient(135deg,var(--pink3),var(--pink2));box-shadow:0 10px 28px rgba(236,72,153,.38)}
 .avatar,.bigAvatar{background:linear-gradient(135deg,var(--pink3),var(--pink2))}
 .stat span,.resumeTitle,.resumePreview.fresher .resumeSection h4,.resumePreview.modern .resumeSection h4{color:var(--pink3)}
@@ -46,3 +108,773 @@ nav button:hover,nav button.selected{background:linear-gradient(90deg,rgba(236,7
 .quizResult{margin-top:24px;padding:24px;border-radius:20px;background:linear-gradient(135deg,rgba(236,72,153,.12),rgba(168,85,247,.10));display:flex;gap:24px;align-items:center}.scoreCircle{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:22px;background:linear-gradient(135deg,#ec4899,#a855f7);color:#fff;box-shadow:0 0 35px rgba(236,72,153,.28)}.scoreCircle.big{width:120px;height:120px;font-size:30px;margin:auto}
 .atsGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}.wideLabel{display:grid;gap:8px;font-weight:700;margin-bottom:18px}.atsArea{min-height:210px;resize:vertical;border:1px solid var(--line);border-radius:16px;padding:15px;background:rgba(255,255,255,.025);color:inherit;outline:none}.atsArea:focus{border-color:#ec4899;box-shadow:0 0 0 3px rgba(236,72,153,.12)}.atsResult{text-align:center}.atsResult h4{text-align:left;margin-top:24px}.atsResult .skillTags{justify-content:flex-start}.atsResult small{display:block;text-align:left;color:var(--muted);margin-top:20px;line-height:1.5}.missing span{border-color:rgba(248,113,113,.35)!important}.linkBtn{text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 @media(max-width:900px){.atsGrid{grid-template-columns:1fr}.learningBanner{align-items:flex-start}.quizResult{flex-direction:column;align-items:flex-start}}
+
+/* Unique Path v4 interaction + responsive layer */
+button,.linkButton,.templatePick,.cardGrid>*,.oppCard,.mentor,.featureCard,.stat,.panel,.projectCard{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease}
+button:hover,.linkButton:hover{transform:translateY(-2px)}
+.cardGrid>*:hover,.oppCard:hover,.mentor:hover,.featureCard:hover,.projectCard:hover{transform:translateY(-4px);box-shadow:0 18px 45px #17213d18}
+.ripple{position:relative;overflow:hidden}
+.ripple:active{transform:scale(.98)}
+.toast{position:fixed;right:24px;bottom:24px;z-index:1000;display:flex;align-items:center;gap:9px;padding:13px 17px;border-radius:14px;background:#141a2d;color:#fff;box-shadow:0 18px 45px #0004;font-weight:700;font-size:13px;animation:toastIn .25s ease}
+.toast.err{background:#a51f45}.toast svg{width:18px}.spin{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}@keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.full{width:100%}.center{display:block;margin:12px auto 0}.muted{color:#7b849b}.demo{background:#f7f1ff;border:1px solid #eadfff;border-radius:12px;padding:12px;margin:14px 0;font-size:12px;line-height:1.7}
+.rolePick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 14px}.rolePick button{border:1px solid #e1e5ef;background:#fff;border-radius:12px;padding:11px;font-weight:800}.rolePick .selected{border-color:#f04c91;background:#fff1f7;color:#d92d78}
+.mobileHead{display:none}.mobileScroll{display:flex;gap:7px;overflow:auto;padding:9px}.mobileScroll button{white-space:nowrap;border:0;background:#fff;padding:8px 11px;border-radius:9px;font-size:12px}.mobileScroll .active{background:#ffe8f2;color:#d92d78}
+.linkButton{display:inline-flex;align-items:center;gap:7px;text-decoration:none}.buttonRow{display:flex;gap:9px;align-items:center}.three{grid-template-columns:repeat(3,1fr)}
+.infoGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:18px}.infoGrid .featureCard{min-height:170px}
+.gapPlan{padding:15px 0;border-bottom:1px solid #edf0f6}.gapPlan:last-child{border-bottom:0}.gapHead{display:flex;justify-content:space-between;gap:10px}.gapHead span{font-size:12px;font-weight:800;color:#d92d78}.gapPlan p{font-size:13px;line-height:1.6;color:#69738b}.learnSteps{display:flex;flex-wrap:wrap;gap:7px}.learnSteps span{background:#f7f8fc;border-radius:9px;padding:7px 9px;font-size:11px}
+.resultHero{display:flex;align-items:center;gap:28px;background:linear-gradient(135deg,#fff,#fff0f7);border:1px solid #f5d7e6;border-radius:24px;padding:38px}.resultHero h2{margin:5px 0}
+.scoreCircle{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;background:#ffe3ef;color:#d92d78;font-weight:900;font-size:20px}.scoreCircle.big{width:140px;height:140px;font-size:35px;margin:5px auto 18px}
+.uploadBox{border:2px dashed #e3a9c6;border-radius:15px;padding:18px;display:flex;align-items:center;gap:10px;cursor:pointer;background:#fff8fb;margin-bottom:15px;font-weight:800;color:#b42e67}.uploadBox input{display:none}
+.atsResult h4{margin-bottom:7px}.missing span{background:#fff0f2!important;color:#b4233e!important}.aiFeedback{margin-top:14px;white-space:pre-wrap;background:#f7f8fc;border-radius:12px;padding:14px;line-height:1.6;font-size:13px}
+.statusControl{float:right}.statusControl select{padding:8px;border-radius:9px;border:1px solid #ddd}
+.moduleLine{display:flex;align-items:center;gap:9px;padding:12px 0;border-bottom:1px solid #edf0f5;font-size:13px}.moduleLine svg{color:#db3f84}.moduleLine span{margin-left:auto;color:#2c9c67;font-weight:800}
+.dangerText{border:0;background:none;color:#b4233e;margin-top:9px;font-size:12px}.empty{grid-column:1/-1;text-align:center;padding:45px;color:#7a8499}.empty svg{margin-bottom:8px}
+@media(max-width:1000px){.side{display:none}.mobileHead{display:block;position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid #eee;padding:10px 14px}.main{margin-left:0!important}.infoGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.main{padding:18px 14px!important}.pageTitle,.hero,.resultHero{display:block}.pageTitle .buttonRow{margin-top:12px;flex-wrap:wrap}.statGrid,.grid2,.cardGrid,.oppGrid,.mentorGrid,.toolGrid,.atsGrid,.builderGrid{grid-template-columns:1fr!important}.infoGrid{grid-template-columns:1fr}.heroGraphic{display:none}.externalSearch{display:grid!important;grid-template-columns:1fr!important}.templateStrip{overflow:auto}.templatePick{min-width:145px}.resumePreview{min-height:800px}.toast{left:14px;right:14px;bottom:14px}.sideSub{display:none}}
+/* Unique Path v5 innovation layer */
+.innovationCard{position:relative;overflow:hidden}.innovationCard:before{content:'';position:absolute;inset:-60% auto auto -30%;width:180px;height:180px;border-radius:50%;background:rgba(236,72,153,.10);filter:blur(8px);transition:.35s}.innovationCard:hover:before{transform:scale(2)}
+.dnaHero{background:linear-gradient(135deg,#fff,#fff0f7 55%,#f3eaff)}.dnaHero select{padding:10px 12px;border:1px solid #f0c5da;border-radius:10px;background:#fff;margin-top:10px}.radarCard{position:relative}.radarIcon{font-size:28px;margin-bottom:8px}.radarCard .scoreCircle{position:absolute;right:18px;top:18px;width:58px;height:58px;font-size:12px}.skillGraph{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:35px 20px;margin-bottom:20px}.graphNode{display:flex;align-items:center;gap:8px;padding:14px 16px;border:1px solid #f0d5e2;background:#fff;border-radius:18px;box-shadow:0 15px 40px rgba(40,20,50,.07);animation:floatNode 3s ease-in-out infinite;animation-delay:calc(var(--i)*.15s)}.graphNode svg{color:#d92d78}.graphNode .scoreCircle{width:34px;height:34px;font-size:12px}.twin{display:flex;gap:18px;align-items:flex-start}.twin .aiLogo{flex:none}.optionRow{display:flex;gap:10px;align-items:flex-start;padding:13px;border:1px solid var(--line);border-radius:12px;margin:8px 0;cursor:pointer}.optionRow:hover{border-color:#ec4899;background:#fff7fb}.wideLabel input[type=range]{accent-color:#ec4899;width:100%;margin-top:10px}.rolePick{grid-template-columns:repeat(3,1fr)}
+@keyframes floatNode{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(max-width:700px){.rolePick{grid-template-columns:1fr}.skillGraph{display:grid}.graphNode{justify-content:center}.graphNode svg{transform:rotate(90deg)}.twin{display:block}.twin .aiLogo{margin-bottom:14px}}
+/* =========================================================
+   UNIQUE PATH — PREMIUM HOVER / SHINE INTERACTIONS
+   ========================================================= */
+
+/* ---------- Premium cards ---------- */
+
+.stat,
+.panel,
+.featureCard,
+.mentor,
+.projectCard,
+.oppCard,
+.profilePanel,
+.chat,
+.learningBanner,
+.toolCard,
+.card{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+/* Moving light sweep */
+.stat::before,
+.panel::before,
+.featureCard::before,
+.mentor::before,
+.projectCard::before,
+.oppCard::before,
+.profilePanel::before,
+.chat::before,
+.learningBanner::before,
+.toolCard::before,
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-130%;
+  width:65%;
+  height:100%;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,.03) 35%,
+    rgba(255,255,255,.55) 50%,
+    rgba(255,255,255,.03) 65%,
+    transparent 100%
+  );
+  transform:skewX(-18deg);
+  transition:left .7s ease;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Shine sweep on hover */
+.stat:hover::before,
+.panel:hover::before,
+.featureCard:hover::before,
+.mentor:hover::before,
+.projectCard:hover::before,
+.oppCard:hover::before,
+.profilePanel:hover::before,
+.chat:hover::before,
+.learningBanner:hover::before,
+.toolCard:hover::before,
+.card:hover::before{
+  left:140%;
+}
+
+/* Card lift + glow */
+.stat:hover,
+.panel:hover,
+.featureCard:hover,
+.mentor:hover,
+.projectCard:hover,
+.oppCard:hover,
+.profilePanel:hover,
+.chat:hover,
+.learningBanner:hover,
+.toolCard:hover,
+.card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(236,72,153,.28);
+  box-shadow:
+    0 20px 55px rgba(20,30,60,.12),
+    0 0 25px rgba(236,72,153,.08);
+}
+
+
+/* ---------- Premium primary buttons ---------- */
+
+.primary,
+.generateBtn,
+button.primary{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  transition:
+    transform .2s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+.primary::before,
+.generateBtn::before,
+button.primary::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:70%;
+  height:100%;
+  background:linear-gradient(
+    105deg,
+    transparent,
+    rgba(255,255,255,.12),
+    rgba(255,255,255,.65),
+    rgba(255,255,255,.12),
+    transparent
+  );
+  transform:skewX(-20deg);
+  transition:left .55s ease;
+  pointer-events:none;
+  z-index:-1;
+}
+
+.primary:hover,
+.generateBtn:hover,
+button.primary:hover{
+  transform:translateY(-2px) scale(1.015);
+  filter:brightness(1.08);
+  box-shadow:
+    0 12px 30px rgba(49,87,255,.30),
+    0 0 22px rgba(236,72,153,.18);
+}
+
+.primary:hover::before,
+.generateBtn:hover::before,
+button.primary:hover::before{
+  left:140%;
+}
+
+
+/* ---------- Module tiles ---------- */
+
+.moduleList div{
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease,
+    background .22s ease;
+}
+
+.moduleList div::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:65%;
+  height:100%;
+  background:linear-gradient(
+    105deg,
+    transparent,
+    rgba(236,72,153,.05),
+    rgba(255,255,255,.8),
+    rgba(112,76,255,.05),
+    transparent
+  );
+  transform:skewX(-20deg);
+  transition:left .55s ease;
+  pointer-events:none;
+}
+
+.moduleList div:hover{
+  transform:translateY(-3px);
+  border-color:rgba(236,72,153,.3);
+  background:#fff;
+  box-shadow:
+    0 10px 28px rgba(20,30,60,.10),
+    0 0 18px rgba(236,72,153,.08);
+}
+
+.moduleList div:hover::before{
+  left:140%;
+}
+
+
+/* ---------- Template / question tiles ---------- */
+
+.templatePick,
+.questionLink{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .2s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.templatePick::before,
+.questionLink::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:65%;
+  height:100%;
+  background:linear-gradient(
+    105deg,
+    transparent,
+    rgba(255,255,255,.15),
+    rgba(255,255,255,.7),
+    transparent
+  );
+  transform:skewX(-20deg);
+  transition:left .5s ease;
+  pointer-events:none;
+}
+
+.templatePick:hover,
+.questionLink:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(236,72,153,.13);
+  border-color:rgba(236,72,153,.35);
+}
+
+.templatePick:hover::before,
+.questionLink:hover::before{
+  left:140%;
+}
+
+
+/* ---------- Small controls ---------- */
+
+.filters button,
+.chips button,
+.textBtn{
+  transition:
+    transform .18s ease,
+    box-shadow .22s ease,
+    background .22s ease;
+}
+
+.filters button:hover,
+.chips button:hover,
+.textBtn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 18px rgba(49,87,255,.12);
+}
+
+
+/* ---------- Card icons ---------- */
+
+.cardIcon,
+.aiLogo,
+.brandIcon{
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+.featureCard:hover .cardIcon,
+.aiPage:hover .aiLogo,
+.brand:hover .brandIcon{
+  transform:scale(1.07) rotate(-2deg);
+  filter:brightness(1.08);
+  box-shadow:
+    0 10px 28px rgba(49,87,255,.20),
+    0 0 20px rgba(236,72,153,.12);
+}
+
+
+/* ---------- Smooth interaction ---------- */
+
+button,
+.featureCard,
+.oppCard,
+.projectCard,
+.mentor,
+.stat,
+.panel,
+.moduleList div,
+.templatePick,
+.questionLink{
+  will-change:transform;
+}
+
+
+/* ---------- Respect reduced-motion settings ---------- */
+
+@media (prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+/* =========================================================
+   UNIQUE PATH — AUTH ROLE BUTTONS
+   Student / Industry / Institution
+   ========================================================= */
+
+.roleBtn,
+.roleButton,
+.authRole button,
+.roleSelect button {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e7d9e5;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fff5fb, #f8f4ff);
+  color: #182033;
+  font-weight: 800;
+  font-size: 17px;
+  min-height: 58px;
+  cursor: pointer;
+
+  transition:
+    transform .22s ease,
+    box-shadow .25s ease,
+    color .2s ease,
+    border-color .2s ease,
+    background .25s ease;
+}
+
+/* Shine sweep */
+.roleBtn::before,
+.roleButton::before,
+.authRole button::before,
+.roleSelect button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 65%;
+  height: 100%;
+
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 35%,
+    rgba(255,255,255,.85) 50%,
+    rgba(255,255,255,.10) 65%,
+    transparent 100%
+  );
+
+  transform: skewX(-20deg);
+  transition: left .55s ease;
+  pointer-events: none;
+}
+
+/* Hover */
+.roleBtn:hover,
+.roleButton:hover,
+.authRole button:hover,
+.roleSelect button:hover {
+  transform: translateY(-3px);
+
+  color: #d92b7f;
+
+  border-color: rgba(236,72,153,.45);
+
+  background: linear-gradient(
+    135deg,
+    #fff0f8,
+    #f2edff
+  );
+
+  box-shadow:
+    0 12px 30px rgba(236,72,153,.16),
+    0 0 20px rgba(112,76,255,.10);
+}
+
+/* Shine */
+.roleBtn:hover::before,
+.roleButton:hover::before,
+.authRole button:hover::before,
+.roleSelect button:hover::before {
+  left: 140%;
+}
+
+/* Selected role */
+.roleBtn.active,
+.roleButton.active,
+.authRole button.active,
+.roleSelect button.active,
+.roleBtn.selected,
+.roleButton.selected {
+  color: white !important;
+
+  border-color: #ec4899 !important;
+
+  background: linear-gradient(
+    135deg,
+    #db2777,
+    #ec4899,
+    #a855f7
+  ) !important;
+
+  box-shadow:
+    0 10px 28px rgba(236,72,153,.30),
+    0 0 25px rgba(236,72,153,.15);
+}
+
+/* Selected button hover */
+.roleBtn.active:hover,
+.roleButton.active:hover,
+.authRole button.active:hover,
+.roleSelect button.active:hover {
+  transform: translateY(-3px) scale(1.015);
+
+  box-shadow:
+    0 15px 35px rgba(236,72,153,.35),
+    0 0 30px rgba(168,85,247,.18);
+}
+/* =========================================================
+   UNIQUE PATH — PREMIUM CREATE ACCOUNT FORM
+   ========================================================= */
+
+/* Main account card */
+.loginCard {
+  width: min(820px, 92vw) !important;
+  padding: 52px 54px !important;
+  border-radius: 30px !important;
+  background: rgba(255,255,255,.96) !important;
+  border: 1px solid rgba(236,72,153,.16) !important;
+
+  box-shadow:
+    0 30px 80px rgba(20,30,60,.20),
+    0 0 45px rgba(236,72,153,.08) !important;
+}
+
+/* Form layout */
+.loginCard form {
+  display: grid;
+  gap: 18px;
+}
+
+/* Labels */
+.loginCard label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #263047;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Input boxes */
+.loginCard input,
+.loginCard select {
+  width: 100%;
+  min-height: 54px;
+  padding: 13px 16px;
+
+  border: 2px solid #eadfeb;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #fffafd,
+    #f8f5ff
+  );
+
+  color: #182033;
+  font-size: 15px;
+  font-weight: 600;
+
+  outline: none;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .25s ease,
+    transform .2s ease,
+    background .25s ease;
+}
+
+/* Input hover */
+.loginCard input:hover,
+.loginCard select:hover {
+  border-color: #e7a2c5;
+  background: #fff;
+}
+
+/* Input focus */
+.loginCard input:focus,
+.loginCard select:focus {
+  border-color: #ec4899;
+  background: #fff;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 0 0 4px rgba(236,72,153,.10),
+    0 8px 22px rgba(236,72,153,.10);
+}
+
+/* Placeholder */
+.loginCard input::placeholder {
+  color: #9aa1b2;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   ROLE BUTTONS
+   ========================================================= */
+
+.loginCard button {
+  font-family: inherit;
+}
+
+/* Student / Industry / Institution group */
+.loginCard .roleBtn,
+.loginCard .roleButton,
+.loginCard .authRole button,
+.loginCard .roleSelect button {
+  min-height: 62px;
+
+  border-radius: 16px;
+
+  border: 2px solid #eadfeb;
+
+  background: linear-gradient(
+    135deg,
+    #fff7fb,
+    #f5f2ff
+  );
+
+  color: #20263a;
+
+  font-size: 16px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform .22s ease,
+    box-shadow .25s ease,
+    border-color .25s ease,
+    background .25s ease,
+    color .2s ease;
+}
+
+/* Role hover */
+.loginCard .roleBtn:hover,
+.loginCard .roleButton:hover,
+.loginCard .authRole button:hover,
+.loginCard .roleSelect button:hover {
+  transform: translateY(-3px);
+
+  border-color: #ec4899;
+
+  color: #d62978;
+
+  background: linear-gradient(
+    135deg,
+    #fff0f8,
+    #f0ebff
+  );
+
+  box-shadow:
+    0 10px 25px rgba(236,72,153,.15),
+    0 0 20px rgba(168,85,247,.08);
+}
+
+
+/* Selected role */
+.loginCard .roleBtn.active,
+.loginCard .roleButton.active,
+.loginCard .authRole button.active,
+.loginCard .roleSelect button.active,
+.loginCard .roleBtn.selected,
+.loginCard .roleButton.selected {
+  color: white !important;
+
+  border-color: #ec4899 !important;
+
+  background: linear-gradient(
+    135deg,
+    #db2777,
+    #ec4899 50%,
+    #a855f7
+  ) !important;
+
+  box-shadow:
+    0 12px 30px rgba(236,72,153,.30),
+    0 0 25px rgba(168,85,247,.15);
+}
+
+
+/* =========================================================
+   CREATE ACCOUNT BUTTON
+   ========================================================= */
+
+.loginCard .primary,
+.loginCard button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 60px;
+
+  margin-top: 8px;
+
+  border: none !important;
+  border-radius: 16px !important;
+
+  background: linear-gradient(
+    135deg,
+    #db2777,
+    #ec4899,
+    #a855f7
+  ) !important;
+
+  color: white !important;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 30px rgba(236,72,153,.28);
+
+  transition:
+    transform .22s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+.loginCard .primary:hover,
+.loginCard button[type="submit"]:hover {
+  transform: translateY(-3px) scale(1.01);
+
+  filter: brightness(1.06);
+
+  box-shadow:
+    0 17px 38px rgba(236,72,153,.35),
+    0 0 28px rgba(168,85,247,.18);
+}
+
+
+/* =========================================================
+   BUTTON SHINE
+   ========================================================= */
+
+.loginCard .primary::before,
+.loginCard button[type="submit"]::before,
+.loginCard .roleBtn::before,
+.loginCard .roleButton::before,
+.loginCard .authRole button::before,
+.loginCard .roleSelect button::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: -130%;
+
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgba(255,255,255,.12),
+    rgba(255,255,255,.75),
+    rgba(255,255,255,.12),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left .6s ease;
+
+  pointer-events: none;
+}
+
+.loginCard .primary:hover::before,
+.loginCard button[type="submit"]:hover::before,
+.loginCard .roleBtn:hover::before,
+.loginCard .roleButton:hover::before,
+.loginCard .authRole button:hover::before,
+.loginCard .roleSelect button:hover::before {
+  left: 140%;
+}
+
+
+/* =========================================================
+   SIGN-IN LINK
+   ========================================================= */
+
+.loginCard a {
+  color: #db2777;
+  font-weight: 800;
+  text-decoration: none;
+
+  transition:
+    color .2s ease,
+    text-shadow .2s ease;
+}
+
+.loginCard a:hover {
+  color: #a855f7;
+
+  text-shadow:
+    0 0 14px rgba(236,72,153,.25);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .loginCard {
+    width: 94vw !important;
+    padding: 32px 24px !important;
+    border-radius: 24px !important;
+  }
+
+  .loginCard input,
+  .loginCard select {
+    min-height: 52px;
+  }
+
+  .loginCard .roleBtn,
+  .loginCard .roleButton,
+  .loginCard .authRole button,
+  .loginCard .roleSelect button {
+    min-height: 55px;
+  }
+}
